@@ -11,36 +11,42 @@ export default class App extends Component {
   state = {
     latitude: null,
     longitude: null,
-    timestamp: null
+    timestamp: null,
+    currentuser: null
   }
 
   getLocationData = (position) => {
-    if (position.coords){
-    this.setState({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-      timestamp: position.timestamp
-    })}
+    if (position.coords) {
+      this.setState({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        timestamp: position.timestamp
+      })
+    }
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    return (Math.abs(nextState.latitude - this.state.latitude)+Math.abs(nextState.longitude - this.state.longitude)) >.00000001
+  shouldComponentUpdate(nextProps, nextState) {
+    return ((Math.abs(nextState.latitude - this.state.latitude) + Math.abs(nextState.longitude - this.state.longitude)) > .00000001 || this.state.currentuser !== nextState.currentuser)
   }
 
-  componentDidUpdate(){
-    if (this.state.latitude){
+  componentDidUpdate() {
+    if (this.state.latitude) {
       console.log("this is where we should submit a fetch request", this.state)
     }
+  }
+
+  loginUser = (user) => {
+    this.setState({ currentuser: user })
   }
 
   render() {
     return (
       <div>
-        <LocationRequester getLocationData ={this.getLocationData} />
+        <LocationRequester getLocationData={this.getLocationData} />
         <br />
         <UserSignup />
         <br />
-        <Login />
+        <Login loginUser={this.loginUser} />
         <br />
         <StartGame />
       </div>

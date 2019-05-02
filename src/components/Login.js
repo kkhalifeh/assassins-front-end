@@ -25,9 +25,13 @@ class Login extends Component {
           'Content-Type': 'application/json',
         }
       }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(user => {
+          this.props.loginUser(user)
+          this.setState({ alias: '', password_digest: '' })
+        })
     }
   }
+
 
   render() {
     const { alias, password_digest } = this.state
