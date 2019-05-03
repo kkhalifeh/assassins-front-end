@@ -6,6 +6,7 @@ import StartGame from './components/StartGame';
 import Login from './components/Login';
 import LocationRequester from './components/LocationRequester';
 import Dashboard from './containers/Dashboard';
+import CreateGame from './components/CreateGame';
 
 const API = "https://murder-with-friends.herokuapp.com/users"
 
@@ -61,6 +62,8 @@ export default class App extends Component {
         <UserSignup />
         <br />
         <Login loginUser={this.loginUser} />
+        <br />
+        <CreateGame />
         <br />
         <StartGame />
         <br />
