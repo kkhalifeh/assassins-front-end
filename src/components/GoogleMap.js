@@ -10,19 +10,20 @@ class GoogleMap extends Component {
       lat: 0,
       lng: 0
     },
-    zoom: 11
+    zoom: 20
   }
 
   componentDidMount() {
     this.setState({
       center: {
-        lat: this.props.long,
-        lng: this.props.lat
+        lat: this.props.lat,
+        lng: this.props.long
       }
     })
   }
 
   render() {
+    console.log("google maps props", this.props)
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
@@ -32,8 +33,8 @@ class GoogleMap extends Component {
           defaultZoom={this.state.zoom}
         >
           <AnyReactComponent
-            lat={this.props.long}
-            lng={this.props.lat}
+            lat={this.props.lat}
+            lng={this.props.long}
             text="X"
           />
         </GoogleMapReact>
