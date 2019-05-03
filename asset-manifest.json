@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/kkhalifeh/assassins-front-end/blob/master/static/css/main.795991f2.chunk.css",
-    "main.js": "/kkhalifeh/assassins-front-end/blob/master/static/js/main.e45e9aa4.chunk.js",
-    "main.js.map": "/kkhalifeh/assassins-front-end/blob/master/static/js/main.e45e9aa4.chunk.js.map",
-    "runtime~main.js": "/kkhalifeh/assassins-front-end/blob/master/static/js/runtime~main.18971653.js",
-    "runtime~main.js.map": "/kkhalifeh/assassins-front-end/blob/master/static/js/runtime~main.18971653.js.map",
-    "static/css/2.266e55a5.chunk.css": "/kkhalifeh/assassins-front-end/blob/master/static/css/2.266e55a5.chunk.css",
-    "static/js/2.b560d19d.chunk.js": "/kkhalifeh/assassins-front-end/blob/master/static/js/2.b560d19d.chunk.js",
-    "static/js/2.b560d19d.chunk.js.map": "/kkhalifeh/assassins-front-end/blob/master/static/js/2.b560d19d.chunk.js.map",
-    "index.html": "/kkhalifeh/assassins-front-end/blob/master/index.html",
-    "precache-manifest.495add14012a83aa4208bcf1639ddc63.js": "/kkhalifeh/assassins-front-end/blob/master/precache-manifest.495add14012a83aa4208bcf1639ddc63.js",
-    "service-worker.js": "/kkhalifeh/assassins-front-end/blob/master/service-worker.js",
-    "static/css/2.266e55a5.chunk.css.map": "/kkhalifeh/assassins-front-end/blob/master/static/css/2.266e55a5.chunk.css.map",
-    "static/css/main.795991f2.chunk.css.map": "/kkhalifeh/assassins-front-end/blob/master/static/css/main.795991f2.chunk.css.map"
+    "main.css": "/kkhalifeh/assassins-front-end/static/css/main.795991f2.chunk.css",
+    "main.js": "/kkhalifeh/assassins-front-end/static/js/main.8900bd3f.chunk.js",
+    "main.js.map": "/kkhalifeh/assassins-front-end/static/js/main.8900bd3f.chunk.js.map",
+    "runtime~main.js": "/kkhalifeh/assassins-front-end/static/js/runtime~main.2c39eda4.js",
+    "runtime~main.js.map": "/kkhalifeh/assassins-front-end/static/js/runtime~main.2c39eda4.js.map",
+    "static/css/2.266e55a5.chunk.css": "/kkhalifeh/assassins-front-end/static/css/2.266e55a5.chunk.css",
+    "static/js/2.b560d19d.chunk.js": "/kkhalifeh/assassins-front-end/static/js/2.b560d19d.chunk.js",
+    "static/js/2.b560d19d.chunk.js.map": "/kkhalifeh/assassins-front-end/static/js/2.b560d19d.chunk.js.map",
+    "index.html": "/kkhalifeh/assassins-front-end/index.html",
+    "precache-manifest.a9fd200e146ccb3118f13b5e7cd03241.js": "/kkhalifeh/assassins-front-end/precache-manifest.a9fd200e146ccb3118f13b5e7cd03241.js",
+    "service-worker.js": "/kkhalifeh/assassins-front-end/service-worker.js",
+    "static/css/2.266e55a5.chunk.css.map": "/kkhalifeh/assassins-front-end/static/css/2.266e55a5.chunk.css.map",
+    "static/css/main.795991f2.chunk.css.map": "/kkhalifeh/assassins-front-end/static/css/main.795991f2.chunk.css.map"
   }
 }
