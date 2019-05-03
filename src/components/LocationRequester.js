@@ -7,6 +7,7 @@ class LocationRequester extends Component {
     navigator.geolocation.watchPosition(this.geo_success, this.geo_error, this.geo_options);
   }
   geo_success = (position) => {
+    console.log(position)
     this.props.getLocationData(position)
   }
 

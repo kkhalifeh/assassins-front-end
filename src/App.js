@@ -6,6 +6,8 @@ import StartGame from './components/StartGame';
 import Login from './components/Login';
 import LocationRequester from './components/LocationRequester';
 
+const API = "http://localhost:3000/users"
+
 export default class App extends Component {
 
   state = {
@@ -30,12 +32,23 @@ export default class App extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.latitude) {
-      console.log("this is where we should submit a fetch request", this.state)
+    const {longitude, latitude, currentuser, timestamp} = this.state
+    if (longitude && currentuser) {
+      console.log("currentuser", currentuser)
+      fetch(API+`/${currentuser.id}/locate`, {
+        method: 'PATCH',
+        body: JSON.stringify({latitude, longitude, timestamp}),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(data => console.log("post-fetch data", data))
     }
   }
 
   loginUser = (user) => {
+    console.log("user in login user", user)
     this.setState({ currentuser: user })
   }
 

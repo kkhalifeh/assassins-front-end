@@ -15,9 +15,9 @@ class Login extends Component {
   }
 
   onSubmit = (e) => {
+    e.preventDefault()
     const user = { ...this.state }
     if (user.alias !== '' && user.password_digest !== '') {
-      e.preventDefault()
       fetch(API, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(user), // data can be `string` or {object}!
