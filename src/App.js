@@ -5,6 +5,7 @@ import UserSignup from './components/UserSignup';
 import StartGame from './components/StartGame';
 import Login from './components/Login';
 import LocationRequester from './components/LocationRequester';
+import Dashboard from './containers/Dashboard';
 
 const API = "https://murder-with-friends.herokuapp.com/users"
 
@@ -32,18 +33,18 @@ export default class App extends Component {
   }
 
   componentDidUpdate() {
-    const {longitude, latitude, currentuser, timestamp} = this.state
+    const { longitude, latitude, currentuser, timestamp } = this.state
     if (longitude && currentuser) {
       console.log("currentuser", currentuser)
-      fetch(API+`/${currentuser.id}/locate`, {
+      fetch(API + `/${currentuser.id}/locate`, {
         method: 'PATCH',
-        body: JSON.stringify({latitude, longitude, timestamp}),
+        body: JSON.stringify({ latitude, longitude, timestamp }),
         headers: {
           'Content-Type': 'application/json',
         }
       })
-      .then(res => res.json())
-      .then(data => console.log("post-fetch data", data))
+        .then(res => res.json())
+        .then(data => console.log("post-fetch data", data))
     }
   }
 
@@ -62,6 +63,8 @@ export default class App extends Component {
         <Login loginUser={this.loginUser} />
         <br />
         <StartGame />
+        <br />
+        {this.state.currentuser ? <Dashboard currentuser={this.state.currentuser} /> : null}
       </div>
     )
   }
