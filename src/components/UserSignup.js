@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const API = 'http://localhost:3000/users/create/'
+const API = 'https://murder-with-friends.herokuapp.com/users/create/'
 
 class UserSignup extends Component {
 
@@ -18,9 +18,8 @@ class UserSignup extends Component {
 
   onSubmit = (e) => {
     const user = { ...this.state }
+    e.preventDefault()
     if (user.name !== '' && user.alias !== '' && user.password_digest !== '') {
-      console.log(user);
-      e.preventDefault()
       fetch(API, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(user), // data can be `string` or {object}!
@@ -28,8 +27,10 @@ class UserSignup extends Component {
           'Content-Type': 'application/json'
         }
       }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => console.log('Success:', response))
     }
+    else
+      {console.log("refused to submit due to user failure")}
   }
 
   render() {

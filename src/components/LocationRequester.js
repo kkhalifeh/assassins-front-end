@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-const API = 'http://localhost:3000/users/login/'
 
 class LocationRequester extends Component {
 
@@ -12,7 +11,7 @@ class LocationRequester extends Component {
   }
 
   geo_error = () => {
-    alert("Sorry, no position available.");
+    console.log("not seeing anything")
   }
 
     geo_options = {

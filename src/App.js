@@ -6,7 +6,7 @@ import StartGame from './components/StartGame';
 import Login from './components/Login';
 import LocationRequester from './components/LocationRequester';
 
-const API = "http://localhost:3000/users"
+const API = "https://murder-with-friends.herokuapp.com/users"
 
 export default class App extends Component {
 
