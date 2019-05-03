@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const API = 'https://murder-with-friends.herokuapp.com/games/create/'
+const API = 'http://localhost:3000/games/create/'
 
 class CreateGame extends Component {
 

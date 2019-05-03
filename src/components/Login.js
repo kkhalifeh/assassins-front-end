@@ -19,10 +19,9 @@ class Login extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const user = { ...this.state }
-    if (user.alias !== '' && user.password_digest !== '') {try{
+    if (user.alias !== '' && user.password_digest !== '') {
       fetch(API, {
         method: 'POST', // or 'PUT'
-        mode: "no-cors",
         body: JSON.stringify(user), // data can be `string` or {object}!
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +32,6 @@ class Login extends Component {
           this.setState({ alias: '', password_digest: '' })
         })
     }
-    catch(err) {console.log("invalid password")}}
     else {console.log("either username or password blew it")}
   }
 
