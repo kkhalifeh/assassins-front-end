@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const API = 'https://murder-with-friends.herokuapp.com/users/create/'
+const API = 'http://localhost:3000/users/create/'
 
 class UserSignup extends Component {
 

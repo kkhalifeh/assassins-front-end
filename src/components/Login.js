@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const API = 'https://murder-with-friends.herokuapp.com/users/login/'
+const API = 'http://localhost:3000/users/login/'
 
 class Login extends Component {
 
@@ -22,6 +22,7 @@ class Login extends Component {
     if (user.alias !== '' && user.password_digest !== '') {try{
       fetch(API, {
         method: 'POST', // or 'PUT'
+        mode: "no-cors",
         body: JSON.stringify(user), // data can be `string` or {object}!
         headers: {
           'Content-Type': 'application/json',
