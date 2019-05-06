@@ -25,8 +25,8 @@ class GameStats extends Component {
 
   renderStats = () => {
     const stats = [...this.state.stats]
-    stats.forEach(stat => {
-      return <h1>{stat.killer_id}</h1>
+    return stats.map(stat => {
+      return <h1>Killer: {stat.killer_id} Victim: {stat.victim_id}</h1>
     });
 
   }
