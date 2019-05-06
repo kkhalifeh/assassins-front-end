@@ -25,6 +25,8 @@ class SelectNewGameUsers extends Component {
   const { name, description } = this.props
     if (this.state.unassignedUsers) {
       return (
+        <div>
+        <h3>Which users would you like to add to your game?</h3>
         <form onSubmit={(e) =>
           {e.preventDefault();
           this.props.submitUsers(this.state.checkedUsers)}
@@ -35,6 +37,7 @@ class SelectNewGameUsers extends Component {
             value="Add Users to Game"
             className="btn btn-dark btn-block" />
         </form>
+        </div>
         )
       }
     else
