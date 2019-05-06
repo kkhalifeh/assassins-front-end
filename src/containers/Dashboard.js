@@ -10,7 +10,6 @@ class Dashboard extends Component {
   componentDidMount() {
     const target = this.props.currentuser.target
     this.setState({ target: target })
-    console.log("mounting target in dashboard", target)
   }
 
   updateTarget = (newTarget) => {

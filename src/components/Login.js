@@ -20,22 +20,20 @@ class Login extends Component {
     e.preventDefault()
     const user = { ...this.state }
     if (user.alias !== '' && user.password_digest !== '') {
-      try {
-        fetch(API, {
-          method: 'POST', // or 'PUT'
-          body: JSON.stringify(user), // data can be `string` or {object}!
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }).then(res => res.json())
-          .then(user => {
-            this.props.loginUser(user)
-            this.setState({ alias: '', password_digest: '' })
-          })
-      }
-      catch (err) { console.log("invalid password") }
+
+      fetch(API, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(user), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => res.json())
+        .then(user => {
+          this.props.loginUser(user)
+          this.setState({ alias: '', password_digest: '' })
+        })
     }
-    else { console.log("either username or password blew it") }
+    else {console.log("either username or password blew it")}
   }
 
 
