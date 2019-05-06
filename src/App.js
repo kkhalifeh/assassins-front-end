@@ -36,7 +36,6 @@ export default class App extends Component {
   componentDidUpdate() {
     const { longitude, latitude, currentuser, timestamp } = this.state
     if (longitude && currentuser) {
-      console.log("currentuser", currentuser)
       fetch(API + `/${currentuser.id}/locate`, {
         method: 'PATCH',
         body: JSON.stringify({ latitude, longitude, timestamp }),
@@ -45,12 +44,11 @@ export default class App extends Component {
         }
       })
         .then(res => res.json())
-        .then(data => console.log("post-fetch data", data))
+        .then(data => console.log("Location was sent to your murderer at:", data))
     }
   }
 
   loginUser = (user) => {
-    console.log("user in login user", user)
     this.setState({ currentuser: user })
   }
 

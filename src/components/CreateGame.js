@@ -18,9 +18,9 @@ class CreateGame extends Component {
     })
   }
 
+  // This creates the game and sets created to true so that the component knows to render the select users feature rather than the game feature
   onSubmit = (e) => {
     const game = { ...this.state }
-    console.log(game);
     e.preventDefault()
     fetch(API+"games/create/", {
       method: 'POST', // or 'PUT'
@@ -32,16 +32,17 @@ class CreateGame extends Component {
       .then(response => this.setState({created: true, game: response}))
   }
 
-  submitUsers = (vals) => {
+  // This callback function sends a list of user_ids to the server to make them correspond to the created game
+  submitUsers = (user_ids) => {
     fetch(API+"games/add_users/", {
       method: 'POST',
-      body: JSON.stringify({id: this.state.game.id, users: vals}),
+      body: JSON.stringify({id: this.state.game.id, users: user_ids}),
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then(res => res.json())
-    .then(res => console.log("if this shit all works this will console log the users", res))
+    .then(res => console.log("This is where we redirect to a game dashboard", res))
   }
 
   // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.

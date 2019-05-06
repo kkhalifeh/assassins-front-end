@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const SelectUserCheckBox = props => {
-  console.log(props.user)
   return (
     <div id={props.user.id}>
     <label>
