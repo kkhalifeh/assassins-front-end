@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-const API = 'http://localhost:3000/games/create/'
+import CreateGameForm from './CreateGameForm'
+import SelectNewGameUsers from './SelectNewGameUsers'
+const API = 'http://localhost:3000/'
 
 class CreateGame extends Component {
 
   state = {
     name: '',
-    description: ''
+    description: '',
+    created: false,
+    game: {}
   }
 
   onChange = (e) => {
@@ -18,48 +22,40 @@ class CreateGame extends Component {
     const game = { ...this.state }
     console.log(game);
     e.preventDefault()
-    fetch(API, {
+    fetch(API+"games/create/", {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(game), // data can be `string` or {object}!
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-      .then(response => console.log('Success:', JSON.stringify(response)))
+      .then(response => this.setState({created: true, game: response}))
   }
 
+  submitUsers = (vals) => {
+    fetch(API+"games/add_users/", {
+      method: 'POST',
+      body: JSON.stringify({id: this.state.game.id, users: vals}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(res => console.log("if this shit all works this will console log the users", res))
+  }
+
+  // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.
   render() {
-    const { name, description } = this.state
-    return (
-      <form onSubmit={this.onSubmit}>
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              placeholder="Enter game name"
-              value={name}
-              onChange={this.onChange} />
-          </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="name">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              name="description"
-              placeholder="Enter game description"
-              value={description}
-              onChange={this.onChange} />
-          </div>
-          <input
-            type="submit"
-            value="Create Game"
-            className="btn btn-dark btn-block" />
-        </div>
-      </form>
-    )
+    if (this.state.created === false) {
+      return <CreateGameForm onChange={this.onChange} onSubmit={this.onSubmit}/>
+    }
+    else {
+      return <SelectNewGameUsers
+        game={this.state.game}
+        name={this.state.name}
+        description={this.state.description}
+        submitUsers={this.submitUsers}/>
+    }
   }
 }
 
