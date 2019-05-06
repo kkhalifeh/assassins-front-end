@@ -52,20 +52,36 @@ export default class App extends Component {
     this.setState({ currentuser: user })
   }
 
+  leaveGame = (e, id) => {
+    e.preventDefault()
+    console.log(e);
+    console.log(id);
+    const user = { id: id }
+    fetch(API + `/${id}/leave_game`, {
+      method: 'PATCH',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(user => this.setState({ currentuser: user }))
+  }
+
   render() {
     return (
       <div>
         <LocationRequester getLocationData={this.getLocationData} />
         <br />
-        <UserSignup />
+        {this.state.currentuser ? null : <UserSignup />}
         <br />
         <Login loginUser={this.loginUser} />
         <br />
         <CreateGame />
         <br />
-        <StartGame />
+        {this.state.currentuser ? <StartGame currentuser={this.state.currentuser} /> : null}
         <br />
-        {this.state.currentuser ? <Dashboard currentuser={this.state.currentuser} /> : null}
+        {this.state.currentuser ? <Dashboard currentuser={this.state.currentuser} leaveGame={this.leaveGame} /> : null}
       </div>
     )
   }

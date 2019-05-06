@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Target from '../components/Target';
+import GameStats from './GameStats';
 
 class Dashboard extends Component {
 
@@ -14,7 +15,6 @@ class Dashboard extends Component {
 
   updateTarget = (newTarget) => {
     const target = newTarget.target
-    console.log("New Target:", newTarget.target);
     this.setState({ target: target })
   }
 
@@ -23,6 +23,7 @@ class Dashboard extends Component {
     return (
       <div className="card mb-3">
         {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : null}
+        {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} /> : console.log('not working')}
       </div>
     )
   }

@@ -6,8 +6,7 @@ class UserSignup extends Component {
   state = {
     name: '',
     alias: '',
-    password_digest: '',
-    id: 11
+    password_digest: ''
   }
 
   onChange = (e) => {
