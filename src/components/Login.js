@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-const API = 'https://murder-with-friends.herokuapp.com/users/login/'
+const API = 'http://localhost:3000/users/login/'
 
 class Login extends Component {
 
@@ -19,21 +19,23 @@ class Login extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     const user = { ...this.state }
-    if (user.alias !== '' && user.password_digest !== '') {try{
-      fetch(API, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(user), // data can be `string` or {object}!
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }).then(res => res.json())
-        .then(user => {
-          this.props.loginUser(user)
-          this.setState({ alias: '', password_digest: '' })
-        })
+    if (user.alias !== '' && user.password_digest !== '') {
+      try {
+        fetch(API, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(user), // data can be `string` or {object}!
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => res.json())
+          .then(user => {
+            this.props.loginUser(user)
+            this.setState({ alias: '', password_digest: '' })
+          })
+      }
+      catch (err) { console.log("invalid password") }
     }
-    catch(err) {console.log("invalid password")}}
-    else {console.log("either username or password blew it")}
+    else { console.log("either username or password blew it") }
   }
 
 

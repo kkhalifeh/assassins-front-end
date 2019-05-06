@@ -8,7 +8,7 @@ import LocationRequester from './components/LocationRequester';
 import Dashboard from './containers/Dashboard';
 import CreateGame from './components/CreateGame';
 
-const API = "https://murder-with-friends.herokuapp.com/users"
+const API = "http://localhost:3000/users"
 
 export default class App extends Component {
 

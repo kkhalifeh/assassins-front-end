@@ -13,11 +13,17 @@ class Dashboard extends Component {
     console.log("mounting target in dashboard", target)
   }
 
+  updateTarget = (newTarget) => {
+    const target = newTarget.target
+    console.log("New Target:", newTarget.target);
+    this.setState({ target: target })
+  }
+
   render() {
     const { target } = this.state
     return (
       <div className="card mb-3">
-        {target ? <Target target={target} /> : null}
+        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : null}
       </div>
     )
   }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-const API = 'https://murder-with-friends.herokuapp.com/games/start/'
+const API = 'http://localhost:3000/games/start/'
 
 class StartGame extends Component {
 
   onSubmit = (e) => {
-    const game = { id: 1 }
+    const game = { id: 11 }
     e.preventDefault()
     fetch(API, {
       method: 'POST', // or 'PUT'
