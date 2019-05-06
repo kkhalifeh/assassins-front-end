@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div><img src="http://www.stickpng.com/assets/images/58568b014f6ae202fedf2717.png" height="50" width="50" /></div>;
 
 class GoogleMap extends Component {
 

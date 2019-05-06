@@ -7,7 +7,7 @@ class UserSignup extends Component {
     name: '',
     alias: '',
     password_digest: '',
-    id: 1
+    id: 11
   }
 
   onChange = (e) => {
@@ -29,8 +29,7 @@ class UserSignup extends Component {
       }).then(res => res.json())
         .then(response => console.log('Success:', response))
     }
-    else
-      {console.log("refused to submit due to user failure")}
+    else { console.log("refused to submit due to user failure") }
   }
 
   render() {
