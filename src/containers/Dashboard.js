@@ -31,7 +31,12 @@ class Dashboard extends Component {
     console.log("in the dashboard", this.props)
     return (
       <div className="card mb-3">
-        Your secret code is: {this.props.currentuser.secret_code}<br />(Only give this away to the person who murders you. If they have it, they can mark you as killed.)
+        <h3>Hello {this.props.currentuser.name} (a.k.a. {this.props.currentuser.alias}):</h3>
+
+        <h5>You have killed {this.props.currentuser.kill_count} friends this game, and {this.props.currentuser.all_time_kill_count} friends overall.</h5>
+
+        <h5>Your secret code is: {this.props.currentuser.secret_code}</h5>
+        <p>(Only give your secret code away to the person who murders you. If they have it, they can mark you as killed.)</p>
         {target ? <Target target={target} currentuser={this.props.currentuser} endGame={this.endGame} updateTarget={this.updateTarget} /> : null}
         {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} winner={this.state.winner} /> : console.log('not working')}
       </div>

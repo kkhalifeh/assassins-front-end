@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+const uuid = require('uuidv4')
 const API = "http://localhost:3000/kills"
 
 class GameStats extends Component {
@@ -26,7 +27,7 @@ class GameStats extends Component {
   renderStats = () => {
     const stats = [...this.state.stats]
     return stats.map(stat => {
-      return <h1 key={stat.victim.alias}>Killer: {stat.killer.alias} Victim: {stat.victim.alias}</h1>
+      return <h1 key={uuid()}>Killer: {stat.killer.alias} Victim: {stat.victim.alias}</h1>
     });
 
   }

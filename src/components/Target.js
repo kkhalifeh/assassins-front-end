@@ -6,7 +6,8 @@ class Target extends Component {
 
   state = {
     error: null,
-    secret_code: ""
+    secret_code: "",
+    self_defense_code: ""
   }
 
   killTarget(userId, targetId) {
@@ -22,6 +23,19 @@ class Target extends Component {
       .then(data => data.error ? this.setState({error: data.error}) : this.successfulKillActions(data))
   }
 
+  selfDefenseRegisterKill = () => {
+    const user = { id: this.props.currentuser.id, secret_code: this.state.self_defense_code, gameId: this.props.currentuser.game_id }
+    fetch(API + `/${user.id}/self_defense`, {
+      method: 'PATCH',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(() => console.log("You murdered your assailant!"))
+  }
+
   successfulKillActions = (data) => {
     if (data.target.target_id !== data.id) {
       this.props.updateTarget(data);
@@ -33,7 +47,7 @@ class Target extends Component {
   }
 
   onChange = (e) => {
-    this.setState({secret_code: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   killButton = (e, id) => {
@@ -50,6 +64,12 @@ class Target extends Component {
     } else {
       console.log("Target is too far to kill");
     }
+  }
+
+
+  selfDefenseButton = (e, id) => {
+    e.preventDefault()
+    this.selfDefenseRegisterKill(this.props.currentuser.id)
   }
 
   calculateDistance(lat1, lon1, lat2, lon2) {
@@ -95,6 +115,20 @@ class Target extends Component {
           type="submit"
           className="btn btn-danger btn-lg btn-block"
           value="Kill Target"
+          />
+        </form>
+
+        <form onSubmit={(e) => this.selfDefenseButton(e, this.props.target.target_id)}>
+        <label>
+        <br />
+        Register a self-defense kill of your assassin (enter their secret code):
+        {this.state.error}
+        <input type="text" onChange={this.onChange} name="self_defense_code" value={this.state.self_defense_code}/>
+        </label>
+        <input
+          type="submit"
+          className="btn btn-danger btn-lg btn-block"
+          value="Register Murder of Your Assassin"
           />
         </form>
       </div>

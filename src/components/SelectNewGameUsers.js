@@ -25,7 +25,7 @@ class SelectNewGameUsers extends Component {
   }
 
   render(){
-    console.log("state", this.state.checkedUsers)
+
   const { name, description } = this.props
     if (this.state.unassignedUsers) {
       return (
