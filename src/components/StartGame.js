@@ -4,7 +4,7 @@ const API = 'http://localhost:3000/games/start/'
 class StartGame extends Component {
 
   onSubmit = (e) => {
-    const game = { id: 11 }
+    const game = { id: this.props.currentuser.game_id }
     e.preventDefault()
     fetch(API, {
       method: 'POST', // or 'PUT'
@@ -15,7 +15,6 @@ class StartGame extends Component {
     }).then(res => res.json())
       .then(response => console.log('Success:', JSON.stringify(response)))
   }
-
   render() {
     return (
       <form onSubmit={this.onSubmit}>
