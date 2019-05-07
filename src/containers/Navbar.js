@@ -11,12 +11,12 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="" onClick={this.onClick}>Murder With Friends</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
-            <li className="nav-item active">
+            <li className="nav-item">
               {user ? <a className="nav-link" href="" onClick={this.props.logOut}>Logout <span className="sr-only">(current)</span></a> : null}
             </li>
           </ul>
