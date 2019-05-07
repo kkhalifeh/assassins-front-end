@@ -19,6 +19,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.props.currentuser)
     const { target } = this.state
     return (
       <div className="card mb-3">

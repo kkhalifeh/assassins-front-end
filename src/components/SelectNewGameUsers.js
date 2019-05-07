@@ -12,12 +12,13 @@ class SelectNewGameUsers extends Component {
     fetch(API)
     .then(res => res.json())
     .then(res => this.setState({unassignedUsers: res}))
+    this.setState({checkedUsers: this.props.currentuser.id})
   }
 
   onChecked = (id) => {
     if (!this.state.checkedUsers.includes(id))
     {this.setState
-      ({checkedUsers: [...this.state.checkedUsers, id]}
+      ({checkedUsers: [...this.state.checkedUsers, id]}, console.log("Checked Users", this.state.checkedUsers)
     )}
   }
 

@@ -34,6 +34,7 @@ class CreateGame extends Component {
 
   // This callback function sends a list of user_ids to the server to make them correspond to the created game
   submitUsers = (user_ids) => {
+    console.log("user_ids on submit", user_ids)
     fetch(API+"games/add_users/", {
       method: 'POST',
       body: JSON.stringify({id: this.state.game.id, users: user_ids}),
@@ -47,16 +48,20 @@ class CreateGame extends Component {
 
   // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.
   render() {
-    if (this.state.created === false) {
-      return <CreateGameForm onChange={this.onChange} onSubmit={this.onSubmit}/>
-    }
-    else {
-      return <SelectNewGameUsers
-        game={this.state.game}
-        name={this.state.name}
-        description={this.state.description}
-        submitUsers={this.submitUsers}/>
-    }
+    if (this.props.currentuser)
+      {if (this.state.created === false) {
+        return <CreateGameForm onChange={this.onChange} onSubmit={this.onSubmit}/>
+      }
+      else {
+        return <SelectNewGameUsers
+          game={this.state.game}
+          name={this.state.name}
+          description={this.state.description}
+          submitUsers={this.submitUsers}
+          currentuser={this.props.currentuser}/>
+      }}
+    else
+      {console.log("TO DO: This is where we redirect to login page")}
   }
 }
 
