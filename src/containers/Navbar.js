@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 
 class Navbar extends Component {
+
+  onClick = (e) => {
+    e.preventDefault()
+  }
+
   render() {
+    const user = this.props.currentuser
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="">Murder With Friends</a>
+        <a className="navbar-brand" href="" onClick={this.onClick}>Murder With Friends</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="">Home <span className="sr-only">(current)</span></a>
+              {user ? <a className="nav-link" href="" onClick={this.props.logOut}>Logout <span className="sr-only">(current)</span></a> : null}
             </li>
           </ul>
         </div>

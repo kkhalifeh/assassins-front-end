@@ -24,6 +24,25 @@ export default class App extends Component {
     currentuser: null
   }
 
+  componentDidMount() {
+    const userId = localStorage.getItem("user_id")
+
+    if (userId) {
+      fetch(API + '/auto_login', {
+        headers: {
+          "Authorization": userId
+        }
+      })
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ currentuser: data })
+        })
+
+    } else {
+      console.log('Fail');
+    }
+  }
+
   getLocationData = (position) => {
     if (position.coords) {
       this.setState({
@@ -59,7 +78,10 @@ export default class App extends Component {
   }
 
   loginUser = (user) => {
-    this.setState({ currentuser: user }, () => <Redirect to="/" />)
+    this.setState({ currentuser: user }, () => {
+      localStorage.setItem("user_id", this.state.currentuser.id)
+      return < Redirect to="/" />
+    })
   }
 
   onUserCreate = (inputs) => {
@@ -73,7 +95,8 @@ export default class App extends Component {
         }
       }).then(res => res.json())
         .then(response => {
-          this.setState({ currentuser: response }, () => { this.props.history.push("/"); })
+          this.loginUser(response)
+          return this.props.history.push("/")
         })
     }
     else { console.log("refused to submit due to user failure") }
@@ -93,11 +116,22 @@ export default class App extends Component {
       .then(user => this.setState({ currentuser: user }))
   }
 
+  logOut = (e) => {
+    e.preventDefault()
+    localStorage.removeItem("user_id")
+    this.setState({
+      currentuser: null
+    }, () => {
+      this.props.history.push("/")
+    })
+  }
+
+
   render() {
     return (
 
       <div>
-        <Navbar />
+        <Navbar logOut={this.logOut} currentuser={this.state.currentuser} />
         <LocationRequester getLocationData={this.getLocationData} />
 
         <Switch>
