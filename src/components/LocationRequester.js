@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class LocationRequester extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     navigator.geolocation.watchPosition(this.geo_success, this.geo_error, this.geo_options);
   }
   geo_success = (position) => {
@@ -13,15 +13,15 @@ class LocationRequester extends Component {
     console.log("not seeing anything")
   }
 
-    geo_options = {
-      enableHighAccuracy: true,
-      maximumAge        : 30000,
-      timeout           : 27000
-    };
+  geo_options = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000
+  };
 
-    render(){
-      return null
-    }
+  render() {
+    return null
+  }
 }
 
 export default LocationRequester

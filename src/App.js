@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Navbar from './containers/Navbar';
+import Navbar from './containers/Navbar';
 import UserSignup from './components/UserSignup';
 import StartGame from './components/StartGame';
 import Login from './components/Login';
@@ -78,11 +78,27 @@ export default class App extends Component {
     else { console.log("refused to submit due to user failure") }
   }
 
+  leaveGame = (e, id) => {
+    e.preventDefault()
+    console.log(e);
+    console.log(id);
+    const user = { id: id }
+    fetch(API + `/${id}/leave_game`, {
+      method: 'PATCH',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => res.json())
+      .then(user => this.setState({ currentuser: user }))
+  }
+
   render() {
     return (
 
       <div>
-
+        <Navbar />
         <LocationRequester getLocationData={this.getLocationData} />
 
         <Switch>

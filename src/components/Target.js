@@ -5,7 +5,7 @@ const API = "http://localhost:3000/users"
 class Target extends Component {
 
   killTarget(userId, targetId) {
-    const user = { id: userId, target_id: targetId }
+    const user = { id: userId, target_id: targetId, gameId: this.props.currentuser.game_id }
     fetch(API + `/${userId}/kill_target`, {
       method: 'PATCH',
       body: JSON.stringify(user),
