@@ -58,7 +58,7 @@ export default class App extends Component {
   }
 
   loginUser = (user) => {
-    this.setState({ currentuser: user }, () => <Redirect to="/dashboard"/>)
+    this.setState({ currentuser: user }, () => <Redirect to="/"/>)
   }
 
   onUserCreate = (inputs) => {
@@ -73,7 +73,7 @@ export default class App extends Component {
       }).then(res => res.json())
         .then(response => {
           this.setState({currentuser: response}, () =>
-          {this.props.history.push("/dashboard/");})
+          {this.props.history.push("/");})
     })}
     else { console.log("refused to submit due to user failure") }
   }
@@ -123,7 +123,6 @@ export default class App extends Component {
             }
           }
         }/>
-
         </Switch>
       </div>
     )

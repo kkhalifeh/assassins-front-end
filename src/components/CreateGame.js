@@ -44,7 +44,7 @@ class CreateGame extends Component {
     })
     .then(res => res.json())
     .then(() =>
-    {this.props.history.push("/dashboard/")})
+    {this.props.history.push("/")})
   }
 
   // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.
