@@ -27,13 +27,20 @@ class Login extends Component {
         headers: {
           'Content-Type': 'application/json',
         }
-      }).then(res => res.json())
+      }).then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw new Error('This user does not exist')
+        }
+      })
         .then(user => {
+          console.log('THIS IS THE USER!', user);
           this.props.loginUser(user)
           this.setState({ alias: '', password_digest: '' })
         })
     }
-    else {console.log("either username or password blew it")}
+    else { console.log("either username or password blew it") }
   }
 
   redirectToSignUp = (e) => {
@@ -50,38 +57,38 @@ class Login extends Component {
     const { alias, password_digest } = this.state
     return (
       <div>
-      <form onSubmit={this.onSubmit}>
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="name">Alias</label>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="name">Alias</label>
+              <input
+                type="text"
+                className="form-control"
+                name="alias"
+                placeholder="Enter name"
+                value={alias}
+                onChange={this.onChange} />
+            </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                name="password_digest"
+                placeholder="Password"
+                value={password_digest}
+                onChange={this.onChange} />
+            </div>
             <input
-              type="text"
-              className="form-control"
-              name="alias"
-              placeholder="Enter name"
-              value={alias}
-              onChange={this.onChange} />
+              type="submit"
+              value="Login"
+              className="btn btn-dark btn-block" />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password_digest"
-              placeholder="Password"
-              value={password_digest}
-              onChange={this.onChange} />
-          </div>
-          <input
-            type="submit"
-            value="Login"
-            className="btn btn-dark btn-block" />
-        </div>
-      </form>
-        <br/>
+        </form>
+        <br />
         <h5><center>
-        OR...</center></h5>
-        <br/>
+          OR...</center></h5>
+        <br />
         <button onClick={this.redirectToSignUp} className="btn btn-dark btn-block">Sign Up</button>
 
         <div className="fixed-bottom">

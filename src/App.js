@@ -141,7 +141,7 @@ export default class App extends Component {
           <Route path='/new-user' render={(routeProps) => <UserSignup {...routeProps} onUserCreate={this.onUserCreate} />} />
           <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser} loginUser={this.loginUser} />} />
           <Route path='/start-game' component={StartGame} />
-          <Route path='/how-to-play' render={(routeProps) => <HowToPlay {...routeProps}/>} />
+          <Route path='/how-to-play' render={(routeProps) => <HowToPlay {...routeProps} />} />
           <Route exact path='/' render={
             (routeProps) => {
               switch (true) {
