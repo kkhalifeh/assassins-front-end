@@ -26,11 +26,12 @@ class Dashboard extends Component {
 
   render() {
     const { target } = this.state
-    console.log(target)
+    console.log("in the dashboard", this.props)
     return (
       <div className="card mb-3">
-        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} endGame={this.endGame} /> : null}
-        {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} winner={this.state.winner} /> : console.log('not working')}
+        Your secret code is: {this.props.currentuser.secret_code}<br/>(Only give this away to the person who murders you. If they have it, they can mark you as killed.)
+        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : null}
+        {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} winner={this.state.winner}/> : console.log('not working')}
       </div>
     )
   }
