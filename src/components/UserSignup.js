@@ -17,11 +17,12 @@ class UserSignup extends Component {
 
 
   render() {
-    const { name, alias, game, password_digest } = this.state
+    const { name, alias, password_digest } = this.state
     return (
       <form onSubmit={(e) => {
         e.preventDefault()
-        this.props.onUserCreate(this.state)}}>
+        this.props.onUserCreate(this.state)
+      }}>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="name">Name</label>
