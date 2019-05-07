@@ -10,6 +10,7 @@ import Dashboard from './containers/Dashboard';
 import NotYetStartedDashboard from './containers/NotYetStartedDashboard';
 import NotYetInGameDashboard from './containers/NotYetInGameDashboard';
 import CreateGame from './components/CreateGame';
+import HowToPlay from './containers/HowToPlay';
 
 
 const API = "http://localhost:3000/users"
@@ -104,6 +105,7 @@ export default class App extends Component {
           <Route path='/new-user' render={(routeProps) => <UserSignup {...routeProps} onUserCreate={this.onUserCreate} />} />
           <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser} />} />
           <Route path='/start-game' component={StartGame} />
+          <Route path='/how-to-play' render={(routeProps) => <HowToPlay {...routeProps}/>} />
           <Route exact path='/' render={
             (routeProps) => {
               switch (true) {

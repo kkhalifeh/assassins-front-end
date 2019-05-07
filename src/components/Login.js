@@ -41,6 +41,11 @@ class Login extends Component {
     this.props.history.push('/new-user')
   }
 
+  redirectToHowToPlay = (e) => {
+    e.preventDefault()
+    this.props.history.push('/how-to-play')
+  }
+
   render() {
     const { alias, password_digest } = this.state
     return (
@@ -78,6 +83,10 @@ class Login extends Component {
         OR...</center></h5>
         <br/>
         <button onClick={this.redirectToSignUp} className="btn btn-dark btn-block">Sign Up</button>
+
+        <div className="fixed-bottom">
+          <button onClick={this.redirectToHowToPlay} className="btn btn-danger btn-block">How to Play</button>
+        </div>
       </div>
     )
   }
