@@ -34,6 +34,7 @@ class GameStats extends Component {
   render() {
     return (
       <div>
+        {this.props.winner ? <h2>The winner is: {this.props.winner.alias}</h2> : null}
         {this.renderStats()}
         <button className="btn btn-info btn-block" onClick={(e) => this.props.leaveGame(e, this.props.currentuser.id)}>Leave Game</button>
       </div>

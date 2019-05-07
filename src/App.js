@@ -38,7 +38,7 @@ export default class App extends Component {
   }
 
   processNewUser = (user) => {
-    this.setState({currentuser: user})
+    this.setState({ currentuser: user })
     this.props.history.push('/')
   }
 
@@ -58,13 +58,13 @@ export default class App extends Component {
   }
 
   loginUser = (user) => {
-    this.setState({ currentuser: user }, () => <Redirect to="/"/>)
+    this.setState({ currentuser: user }, () => <Redirect to="/" />)
   }
 
   onUserCreate = (inputs) => {
     const user = { ...inputs }
     if (user.name !== '' && user.alias !== '' && user.password_digest !== '') {
-      fetch(API+"/create/", {
+      fetch(API + "/create/", {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(user), // data can be `string` or {object}!
         headers: {
@@ -72,9 +72,9 @@ export default class App extends Component {
         }
       }).then(res => res.json())
         .then(response => {
-          this.setState({currentuser: response}, () =>
-          {this.props.history.push("/");})
-    })}
+          this.setState({ currentuser: response }, () => { this.props.history.push("/"); })
+        })
+    }
     else { console.log("refused to submit due to user failure") }
   }
 
@@ -103,26 +103,26 @@ export default class App extends Component {
 
         <Switch>
 
-        <Route path='/new-user' render={(routeProps)=> <UserSignup {...routeProps} onUserCreate={this.onUserCreate}/>}/>
-        <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser}/>}/>
-        <Route path='/start-game' component={StartGame} />
-        <Route exact path='/' render={
-          (routeProps) => {
-            switch (true) {
-              case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
-                return <Dashboard {...routeProps} currentuser={this.state.currentuser}/>
-                break;
-              case !!(this.state.currentuser && this.state.currentuser.game):
-                return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser}/>
-                break;
-              case !!this.state.currentuser:
-                return <NotYetInGameDashboard {...routeProps} currentuser={this.state.currentuser}/>
-                break;
-              default:
-              return <Login {...routeProps} loginUser={this.loginUser} />
+          <Route path='/new-user' render={(routeProps) => <UserSignup {...routeProps} onUserCreate={this.onUserCreate} />} />
+          <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser} />} />
+          <Route path='/start-game' component={StartGame} />
+          <Route exact path='/' render={
+            (routeProps) => {
+              switch (true) {
+                case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
+                  return <Dashboard {...routeProps} currentuser={this.state.currentuser} leaveGame={this.leaveGame} />
+                  break;
+                case !!(this.state.currentuser && this.state.currentuser.game):
+                  return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser} />
+                  break;
+                case !!this.state.currentuser:
+                  return <NotYetInGameDashboard {...routeProps} currentuser={this.state.currentuser} />
+                  break;
+                default:
+                  return <Login {...routeProps} loginUser={this.loginUser} />
+              }
             }
-          }
-        }/>
+          } />
         </Switch>
       </div>
     )
