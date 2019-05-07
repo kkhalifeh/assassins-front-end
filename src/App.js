@@ -106,7 +106,7 @@ export default class App extends Component {
         <Route path='/new-user' render={(routeProps)=> <UserSignup {...routeProps} onUserCreate={this.onUserCreate}/>}/>
         <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser}/>}/>
         <Route path='/start-game' component={StartGame} />
-        <Route path='/dashboard' render={
+        <Route exact path='/' render={
           (routeProps) => {
             switch (true) {
               case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
@@ -123,10 +123,7 @@ export default class App extends Component {
             }
           }
         }/>
-        <Route exact path='/' render={(routeProps) => this.state.currentuser ?
-          <Dashboard {...routeProps} currentuser={this.state.currentuser} /> :
-          <Login {...routeProps} loginUser={this.loginUser} />}
-          />
+
         </Switch>
       </div>
     )
