@@ -36,10 +36,15 @@ class Login extends Component {
     else {console.log("either username or password blew it")}
   }
 
+  redirectToSignUp = (e) => {
+    e.preventDefault()
+    this.props.history.push('/new-user')
+  }
 
   render() {
     const { alias, password_digest } = this.state
     return (
+      <div>
       <form onSubmit={this.onSubmit}>
         <div className="form-row">
           <div className="form-group col-md-6">
@@ -68,6 +73,12 @@ class Login extends Component {
             className="btn btn-dark btn-block" />
         </div>
       </form>
+        <br/>
+        <h5><center>
+        OR...</center></h5>
+        <br/>
+        <button onClick={this.redirectToSignUp} className="btn btn-dark btn-block">Sign Up</button>
+      </div>
     )
   }
 }
