@@ -43,7 +43,8 @@ class CreateGame extends Component {
       }
     })
     .then(res => res.json())
-    .then(res => console.log("This is where we redirect to a game dashboard", res))
+    .then(() =>
+    {this.props.history.push("/dashboard/")})
   }
 
   // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.
@@ -61,7 +62,7 @@ class CreateGame extends Component {
           currentuser={this.props.currentuser}/>
       }}
     else
-      {console.log("TO DO: This is where we redirect to login page")}
+      return "You ain't logged in motherfucker"
   }
 }
 

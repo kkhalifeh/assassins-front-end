@@ -29,7 +29,7 @@ export default class App extends Component {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
         timestamp: position.timestamp
-      })
+      }, console.log("position updated in state", this.state.timestamp))
     }
   }
 
@@ -58,8 +58,7 @@ export default class App extends Component {
   }
 
   loginUser = (user) => {
-    this.setState({ currentuser: user })
-    <Redirect to="/dashboard"/>
+    this.setState({ currentuser: user }, () => <Redirect to="/dashboard"/>)
   }
 
   onUserCreate = (inputs) => {
@@ -74,14 +73,14 @@ export default class App extends Component {
       }).then(res => res.json())
         .then(response => {
           this.setState({currentuser: response}, () =>
-          {window.history.pushState(this.state.currentuser,"redirect to main", "/");
-          window.history.forward()})
+          {this.props.history.push("/dashboard/");})
     })}
     else { console.log("refused to submit due to user failure") }
   }
 
   render() {
     return (
+
       <div>
 
         <LocationRequester getLocationData={this.getLocationData} />
@@ -94,13 +93,13 @@ export default class App extends Component {
         <Route path='/dashboard' render={
           (routeProps) => {
             switch (true) {
-              case this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started):
+              case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
                 return <Dashboard {...routeProps} currentuser={this.state.currentuser}/>
                 break;
-              case this.state.currentuser && this.state.currentuser.game:
+              case !!(this.state.currentuser && this.state.currentuser.game):
                 return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser}/>
                 break;
-              case this.state.currentuser:
+              case !!this.state.currentuser:
                 return <NotYetInGameDashboard {...routeProps} currentuser={this.state.currentuser}/>
                 break;
               default:

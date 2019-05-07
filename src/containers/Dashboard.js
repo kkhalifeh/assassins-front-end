@@ -19,11 +19,11 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props.currentuser)
     const { target } = this.state
+    console.log(target)
     return (
       <div className="card mb-3">
-        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : null}
+        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : "Your target hasn't logged in yet."}
       </div>
     )
   }
