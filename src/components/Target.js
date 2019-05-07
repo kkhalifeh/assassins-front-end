@@ -4,8 +4,13 @@ const API = "http://localhost:3000/users"
 
 class Target extends Component {
 
+  state = {
+    error: null,
+    secret_code: ""
+  }
+
   killTarget(userId, targetId) {
-    const user = { id: userId, target_id: targetId, gameId: this.props.currentuser.game_id }
+    const user = { id: userId, target_id: targetId, secret_code: this.state.secret_code, gameId: this.props.currentuser.game_id }
     fetch(API + `/${userId}/kill_target`, {
       method: 'PATCH',
       body: JSON.stringify(user),
@@ -14,7 +19,16 @@ class Target extends Component {
       }
     })
       .then(res => res.json())
-      .then(data => this.props.updateTarget(data))
+      .then(data => data.error ? this.setState({error: data.error}) : this.successfulKillActions(data))
+  }
+
+  successfulKillActions = (data) => {
+    this.props.updateTarget(data);
+    this.setState({error: null})
+  }
+
+  onChange = (e) => {
+    this.setState({secret_code: e.target.value})
   }
 
   killButton = (e, id) => {
@@ -58,9 +72,19 @@ class Target extends Component {
         <h5 className="card-title">Your target is: {this.props.target.name}</h5>
         <GoogleMap long={this.props.target.longitude} lat={this.props.target.latitude} />
         <br />
-        <button
+        <form onSubmit={(e) => this.killButton(e, this.props.target.target_id)}>
+        <label>
+        Target Secret Code (Once you've killed your target, ask for their secret code, enter it here, and then click kill target to score a point and get your new target):
+        {this.state.error}
+        <input type="text" onChange={this.onChange} name="secret_code" value={this.state.secret_code}/>
+        </label>
+
+        <input
+          type="submit"
           className="btn btn-danger btn-lg btn-block"
-          onClick={(e) => this.killButton(e, this.props.target.target_id)}>Kill Target</button>
+          value="Kill Target"
+          />
+        </form>
       </div>
     )
   }
