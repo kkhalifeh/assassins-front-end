@@ -5,7 +5,8 @@ class UserSignup extends Component {
   state = {
     name: '',
     alias: '',
-    password_digest: ''
+    password_digest: '',
+    image_url: ''
   }
 
   onChange = (e) => {
@@ -13,8 +14,6 @@ class UserSignup extends Component {
       [e.target.name]: e.target.value
     })
   }
-
-
 
   render() {
     const { name, alias, password_digest } = this.state
@@ -52,6 +51,16 @@ class UserSignup extends Component {
               name="password_digest"
               placeholder="password"
               value={password_digest}
+              onChange={this.onChange} />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="image_url">Profile Picture Link</label>
+            <input
+              type="text"
+              className="form-control"
+              name="image_url"
+              placeholder="image_url"
+              value={this.state.image_url}
               onChange={this.onChange} />
           </div>
           <input

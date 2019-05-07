@@ -80,8 +80,6 @@ export default class App extends Component {
 
   leaveGame = (e, id) => {
     e.preventDefault()
-    console.log(e);
-    console.log(id);
     const user = { id: id }
     fetch(API + `/${id}/leave_game`, {
       method: 'PATCH',

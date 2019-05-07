@@ -71,10 +71,17 @@ class Target extends Component {
     return Value * Math.PI / 180;
   }
 
+  lastKnownDateAndTime(){
+    let d = new Date(this.props.target.lastTimeUpdated)
+    return d.toLocaleDateString() + " " + d.toLocaleTimeString()
+  }
   render() {
     return (
       <div className="card-body">
         <h5 className="card-title">Your target is: {this.props.target.name}</h5>
+        <img className="card-img-top" src={this.props.target.image_url} alt={"Photo of " + this.props.target.name}/>
+        <br /><br />
+        <h5>Last Known Location (as of {this.lastKnownDateAndTime()}):</h5>
         <GoogleMap long={this.props.target.longitude} lat={this.props.target.latitude} />
         <br />
         <form onSubmit={(e) => this.killButton(e, this.props.target.target_id)}>
