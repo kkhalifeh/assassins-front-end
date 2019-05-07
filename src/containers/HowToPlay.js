@@ -20,7 +20,7 @@ const HowToPlay = props => {
       <h4>Murder Caveats:</h4>
         <ul>
           <li>No witnesses. If another active player aside from you and the victim sees you firing your weapon (throwing the sock, shooting the nerf dart), the kill doesn’t count. You can, however, shoot a victim while other players are looking at the victim (feel free to sneak up on two friends and assassinate them while they’re next to their buddy).</li>
-          <li>Once your weapon (sock, nerf dart) is drawn, your victim can “fire in self defense”. In that case, if they shoot you before you shoot them, you die and are out of the game.</li>
+          <li>Once your weapon (sock, nerf gun, nerf dart) is drawn (in your hand), your victim can “fire in self defense”. In that case, if they shoot you before you shoot them, you die and are out of the game.</li>
         </ul>
       <h4>Tips:</h4>
         <ul>

@@ -101,7 +101,9 @@ export default class App extends Component {
     }
     else { console.log("refused to submit due to user failure") }
   }
+  updateCurrentuser = (res) => {
 
+  }
   leaveGame = (e, id) => {
     e.preventDefault()
     const user = { id: id }
@@ -137,7 +139,7 @@ export default class App extends Component {
         <Switch>
 
           <Route path='/new-user' render={(routeProps) => <UserSignup {...routeProps} onUserCreate={this.onUserCreate} />} />
-          <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser} />} />
+          <Route path='/create-game' render={(routeProps) => <CreateGame {...routeProps} currentuser={this.state.currentuser} loginUser={this.loginUser} />} />
           <Route path='/start-game' component={StartGame} />
           <Route path='/how-to-play' render={(routeProps) => <HowToPlay {...routeProps}/>} />
           <Route exact path='/' render={

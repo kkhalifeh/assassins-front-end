@@ -37,14 +37,15 @@ class CreateGame extends Component {
     console.log("user_ids on submit", user_ids)
     fetch(API+"games/add_users/", {
       method: 'POST',
-      body: JSON.stringify({id: this.state.game.id, users: user_ids}),
+      body: JSON.stringify({id: this.state.game.id, users: user_ids, moderator: this.props.currentuser.id}),
       headers: {
         'Content-Type': 'application/json'
       }
     })
     .then(res => res.json())
-    .then(() =>
-    {this.props.history.push("/")})
+    .then((res) =>
+      {this.props.loginUser(res);
+      this.props.history.push("/")})
   }
 
   // This renders the create a game form, or, upon creation, renders a form to select users to add to the game.
