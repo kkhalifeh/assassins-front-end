@@ -25,7 +25,7 @@ class Target extends Component {
   successfulKillActions = (data) => {
     if (data.target.target_id !== data.id) {
       this.props.updateTarget(data);
-      this.setState({error: null})
+      this.setState({error: null, secret_code: ""})
       }
     else {
       this.props.endGame()
@@ -45,7 +45,7 @@ class Target extends Component {
     const targetLat = this.props.target.latitude
     const targetLong = this.props.target.longitude
 
-    if (this.calculateDistance(userLat, userLong, targetLat, targetLong) < 0.5) {
+    if (this.calculateDistance(userLat, userLong, targetLat, targetLong) > 0.5) {
       this.killTarget(this.props.currentuser.id, id)
     } else {
       console.log("Target is too far to kill");

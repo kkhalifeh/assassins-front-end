@@ -10,8 +10,14 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+
     const target = this.props.currentuser.target
-    this.setState({ target: target })
+    console.log(target.id)
+    if (target.target_id ===this.props.currentuser.id){
+      this.endGame()
+      }
+    else
+    {this.setState({target: target})}
   }
 
   updateTarget = (newTarget) => {
@@ -20,8 +26,7 @@ class Dashboard extends Component {
   }
 
   endGame = () => {
-    this.setState({ target: null, winner: this.props.currentuser })
-
+    this.setState({ target: null, winner: this.props.currentuser})
   }
 
   render() {
@@ -30,7 +35,7 @@ class Dashboard extends Component {
     return (
       <div className="card mb-3">
         Your secret code is: {this.props.currentuser.secret_code}<br/>(Only give this away to the person who murders you. If they have it, they can mark you as killed.)
-        {target ? <Target target={target} currentuser={this.props.currentuser} updateTarget={this.updateTarget} /> : null}
+        {target ? <Target target={target} currentuser={this.props.currentuser} endGame={this.endGame} updateTarget={this.updateTarget} /> : null}
         {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} winner={this.state.winner}/> : console.log('not working')}
       </div>
     )

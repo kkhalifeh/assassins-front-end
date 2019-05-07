@@ -26,7 +26,7 @@ class GameStats extends Component {
   renderStats = () => {
     const stats = [...this.state.stats]
     return stats.map(stat => {
-      return <h1>Killer: {stat.killer.alias} Victim: {stat.victim.alias}</h1>
+      return <h1 key={stat.victim.alias}>Killer: {stat.killer.alias} Victim: {stat.victim.alias}</h1>
     });
 
   }
