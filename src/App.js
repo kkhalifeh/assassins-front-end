@@ -47,16 +47,18 @@ export default class App extends Component {
 
   getLocationData = (position) => {
     if (position.coords) {
-      this.setState({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        timestamp: position.timestamp
-      }, console.log("position updated in state", this.state.timestamp))
+      if (this.state.currentuser) {
+        fetch(API + `/${this.state.currentuser.id}/locate`, {
+          method: 'PATCH',
+          body: JSON.stringify({ latitude: position.coords.latitude, longitude: position.coords.longitude, timestamp: position.timestamp }),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+          .then(res => res.json())
+          .then(data => localStorage.getItem("user_id") && this.setState({currentuser: data}))
+      }
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return ((Math.abs(nextState.latitude - this.state.latitude) + Math.abs(nextState.longitude - this.state.longitude)) > .00000001 || this.state.currentuser !== nextState.currentuser)
   }
 
   processNewUser = (user) => {
@@ -66,17 +68,7 @@ export default class App extends Component {
 
   componentDidUpdate() {
     const { longitude, latitude, currentuser, timestamp } = this.state
-    if (longitude && currentuser) {
-      fetch(API + `/${currentuser.id}/locate`, {
-        method: 'PATCH',
-        body: JSON.stringify({ latitude, longitude, timestamp }),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-        .then(res => res.json())
-        .then(data => localStorage.getItem("user_id") && this.setState({currentuser: data}))
-    }
+
   }
 
   loginUser = (user) => {
