@@ -36,7 +36,7 @@ class Dashboard extends Component {
 
         <h5>Your secret code is: {this.props.currentuser.secret_code}</h5>
         <p>(Only give your secret code away to the person who murders you. If they have it, they can mark you as killed.)</p>
-        {target ? <Target target={target} currentuser={this.props.currentuser} endGame={this.endGame} updateTarget={this.updateTarget} /> : null}
+        {target ? <Target target={this.props.currentuser.target} currentuser={this.props.currentuser} endGame={this.endGame} updateTarget={this.updateTarget} /> : null}
         {this.props.currentuser.game_id && !target ? <GameStats currentuser={this.props.currentuser} leaveGame={this.props.leaveGame} winner={this.state.winner} /> : null}
       </div>
     )
