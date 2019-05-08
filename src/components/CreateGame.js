@@ -63,7 +63,7 @@ class CreateGame extends Component {
           currentuser={this.props.currentuser}/>
       }}
     else
-      return "You ain't logged in motherfucker"
+      return "You ain't logged in, friend."
   }
 }
 

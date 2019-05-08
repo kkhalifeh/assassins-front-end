@@ -31,16 +31,17 @@ class Login extends Component {
         if (res.ok) {
           return res.json()
         } else {
-          throw new Error('This user does not exist')
+          return {error: "User failure"}
         }
       })
         .then(user => {
-          console.log('THIS IS THE USER!', user);
+          if (user.id){
           this.props.loginUser(user)
-          this.setState({ alias: '', password_digest: '' })
+          this.setState({ alias: '', password_digest: '' })}
+          else {alert("That was an incorrect login")}
         })
     }
-    else { console.log("either username or password blew it") }
+    else { alert("either username or password blew it") }
   }
 
   redirectToSignUp = (e) => {

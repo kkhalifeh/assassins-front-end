@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 class LocationRequester extends Component {
 
@@ -10,7 +10,7 @@ class LocationRequester extends Component {
   }
 
   geo_error = () => {
-    console.log("not seeing anything")
+    alert("Please whitelist this app to use your device's location.")
   }
 
   geo_options = {

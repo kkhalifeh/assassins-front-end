@@ -20,7 +20,15 @@ class Target extends Component {
       }
     })
       .then(res => res.json())
+      // .then(console.log)
       .then(data => data.error ? this.setState({error: data.error}) : this.successfulKillActions(data))
+  }
+
+  componentDidUpdate = () => {
+    if (this.state.error){
+      alert(this.state.error)
+      this.setState({error: null})
+    }
   }
 
   selfDefenseRegisterKill = () => {
@@ -33,7 +41,7 @@ class Target extends Component {
       }
     })
       .then(res => res.json())
-      .then(() => console.log("You murdered your assailant!"))
+      .then(data => data.error ? this.setState({error: data.error}) : alert("You murdered your assailant!"))
   }
 
   successfulKillActions = (data) => {
@@ -62,7 +70,7 @@ class Target extends Component {
     if (this.calculateDistance(userLat, userLong, targetLat, targetLong) < 0.5) {
       this.killTarget(this.props.currentuser.id, id)
     } else {
-      console.log("Target is too far to kill");
+      alert("Target is too far to kill.");
     }
   }
 
@@ -76,11 +84,11 @@ class Target extends Component {
     var R = 6371; // km
     var dLat = this.toRad(lat2 - lat1);
     var dLon = this.toRad(lon2 - lon1);
-    var lat1 = this.toRad(lat1);
-    var lat2 = this.toRad(lat2);
+    var lati1 = this.toRad(lat1);
+    var lati2 = this.toRad(lat2);
 
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lati1) * Math.cos(lati2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
     return d;
@@ -122,7 +130,6 @@ class Target extends Component {
         <label>
         <br />
         Register a self-defense kill of your assassin (enter their secret code):
-        {this.state.error}
         <input type="text" onChange={this.onChange} name="self_defense_code" value={this.state.self_defense_code}/>
         </label>
         <input

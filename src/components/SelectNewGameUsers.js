@@ -18,14 +18,12 @@ class SelectNewGameUsers extends Component {
   onChecked = (id) => {
     console.log(this.state.checkedUsers)
     if (!this.state.checkedUsers.includes(id))
-    {this.setState
-      ({checkedUsers: [...this.state.checkedUsers, id]}, console.log("Checked Users", this.state.checkedUsers)
+    {this.setState({checkedUsers: [...this.state.checkedUsers, id]}, console.log("Checked Users", this.state.checkedUsers)
     )}
     else {this.setState({checkedUsers: this.state.checkedUsers.filter(x => x !== id)})}
   }
 
   render(){
-  const { name, description } = this.props
     if (this.state.unassignedUsers) {
       return (
         <div>

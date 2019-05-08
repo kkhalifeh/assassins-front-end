@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarContainer from './containers/NavbarContainer';
 import UserSignup from './components/UserSignup';
@@ -7,7 +7,6 @@ import StartGame from './components/StartGame';
 import Login from './components/Login';
 import LocationRequester from './components/LocationRequester';
 import Dashboard from './containers/Dashboard';
-import NotYetStartedDashboard from './containers/NotYetStartedDashboard';
 import NotYetInGameDashboard from './containers/NotYetInGameDashboard';
 import CreateGame from './components/CreateGame';
 import HowToPlay from './containers/HowToPlay';
@@ -102,7 +101,7 @@ export default class App extends Component {
           return this.props.history.push("/")
         })
     }
-    else { console.log("refused to submit due to user failure") }
+    else { alert("refused to submit due to user failure") }
   }
   updateCurrentuser = (res) => {
 
@@ -150,13 +149,10 @@ export default class App extends Component {
               switch (true) {
                 case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
                   return <Dashboard {...routeProps} currentuser={this.state.currentuser} leaveGame={this.leaveGame} />
-                  break;
-                // case !!(this.state.currentuser && this.state.currentuser.game):
-                //   return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser} />
-                //   break;
+                  // break;
                 case !!this.state.currentuser:
                   return <NotYetInGameDashboard {...routeProps} currentuser={this.state.currentuser} />
-                  break;
+                  // break;
                 default:
                   return <Login {...routeProps} loginUser={this.loginUser} />
               }
