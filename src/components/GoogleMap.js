@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div><img src="http://www.stickpng.com/assets/images/58568b014f6ae202fedf2717.png" alt="Bullseye" height="50" width="50" /></div>;
+const AnyReactComponent = (props) => <div><img src={props.picture} alt="Target" height="50" width="50" /></div>;
 
 class GoogleMap extends Component {
+
 
   state = {
     center: {
@@ -34,6 +35,7 @@ class GoogleMap extends Component {
           <AnyReactComponent
             lat={this.props.lat}
             lng={this.props.long}
+            picture={this.props.picture}
             text="X"
           />
         </GoogleMapReact>

@@ -75,7 +75,7 @@ export default class App extends Component {
         }
       })
         .then(res => res.json())
-        .then(data => console.log("Location was sent to your murderer at:", data))
+        .then(data => this.setState({currentuser: data}))
     }
   }
 

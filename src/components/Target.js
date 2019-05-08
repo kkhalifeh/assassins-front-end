@@ -110,7 +110,7 @@ class Target extends Component {
         <img className="card-img-top" src={this.props.target.image_url} alt={"Photo of " + this.props.target.name}/>
         <br /><br />
         <h5>Last Known Location (as of {this.lastKnownDateAndTime()}):</h5>
-        <GoogleMap long={this.props.target.longitude} lat={this.props.target.latitude} />
+        <GoogleMap picture={this.props.target.image_url} long={this.props.target.longitude} lat={this.props.target.latitude} />
         <br />
         <form onSubmit={(e) => this.killButton(e, this.props.target.target_id)}>
         <label>
