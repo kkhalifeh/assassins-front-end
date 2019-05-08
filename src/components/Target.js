@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import GoogleMap from './GoogleMap';
-const API = "http://localhost:3000/users"
+const API = "https://murder-with-friends.herokuapp.com/users"
 
 class Target extends Component {
 

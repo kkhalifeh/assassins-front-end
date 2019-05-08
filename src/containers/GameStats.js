@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 const uuid = require('uuidv4')
-const API = "http://localhost:3000/kills"
+const API = "https://murder-with-friends.herokuapp.com/kills"
 
 class GameStats extends Component {
 

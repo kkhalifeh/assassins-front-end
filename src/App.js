@@ -13,7 +13,7 @@ import CreateGame from './components/CreateGame';
 import HowToPlay from './containers/HowToPlay';
 
 
-const API = "http://localhost:3000/users"
+const API = "https://murder-with-friends.herokuapp.com/users"
 
 export default class App extends Component {
 
@@ -148,9 +148,9 @@ export default class App extends Component {
                 case !!(this.state.currentuser && (this.state.currentuser.game && this.state.currentuser.game.started)):
                   return <Dashboard {...routeProps} currentuser={this.state.currentuser} leaveGame={this.leaveGame} />
                   break;
-                case !!(this.state.currentuser && this.state.currentuser.game):
-                  return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser} />
-                  break;
+                // case !!(this.state.currentuser && this.state.currentuser.game):
+                //   return <NotYetStartedDashboard {...routeProps} currentuser={this.state.currentuser} />
+                //   break;
                 case !!this.state.currentuser:
                   return <NotYetInGameDashboard {...routeProps} currentuser={this.state.currentuser} />
                   break;

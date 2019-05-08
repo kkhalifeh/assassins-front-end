@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CreateGameForm from './CreateGameForm'
 import SelectNewGameUsers from './SelectNewGameUsers'
-const API = 'http://localhost:3000/'
+const API = 'https://murder-with-friends.herokuapp.com/'
 
 class CreateGame extends Component {
 
