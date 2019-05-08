@@ -11,7 +11,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const target = this.props.currentuser.target
-    if (target.target_id === this.props.currentuser.id) {
+    if (target && target.target_id === this.props.currentuser.id) {
       this.endGame()
     }
     else { this.setState({ target: target }) }
