@@ -75,7 +75,7 @@ export default class App extends Component {
         }
       })
         .then(res => res.json())
-        .then(data => this.setState({currentuser: data}))
+        .then(data => localStorage.getItem("user_id") && this.setState({currentuser: data}))
     }
   }
 
