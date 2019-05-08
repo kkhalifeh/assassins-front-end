@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './containers/Navbar';
+import NavbarContainer from './containers/NavbarContainer';
 import UserSignup from './components/UserSignup';
 import StartGame from './components/StartGame';
 import Login from './components/Login';
@@ -136,7 +136,7 @@ export default class App extends Component {
     return (
 
       <div>
-        <Navbar logOut={this.logOut} currentuser={this.state.currentuser} />
+        <NavbarContainer logOut={this.logOut} currentuser={this.state.currentuser} />
         <LocationRequester getLocationData={this.getLocationData} />
 
         <Switch>
