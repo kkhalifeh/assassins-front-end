@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import SelectUserCheckBox from './SelectUserCheckBox'
-const API = 'http://localhost:3000/users/unassigned/'
+const API = 'https://murder-with-friends.herokuapp.com/users/unassigned/'
 
 class SelectNewGameUsers extends Component {
   state = {
@@ -25,7 +25,6 @@ class SelectNewGameUsers extends Component {
   }
 
   render(){
-
   const { name, description } = this.props
     if (this.state.unassignedUsers) {
       return (

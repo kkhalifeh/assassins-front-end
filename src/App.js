@@ -35,9 +35,12 @@ export default class App extends Component {
       })
         .then(res => res.json())
         .then((data) => {
-          this.setState({ currentuser: data })
+          if (data.id)
+          {this.setState({ currentuser: data })}
+          else {
+            console.log("unable to automatically login")
+          }
         })
-
     } else {
       console.log('Fail');
     }
